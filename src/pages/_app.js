@@ -1,12 +1,10 @@
-import NavBar from '@/components/NavBar';
+import Layout from './Layout';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <NavBar />
+    <Layout>
       <Component {...pageProps} />
-      <h2>This is from _app.js</h2>
-    </>
+    </Layout>
   );
 }
 

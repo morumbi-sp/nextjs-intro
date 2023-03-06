@@ -2,28 +2,51 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-const Nav = styled.nav`
-  background-color: tomato;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  font-size: 30px;
-  color: ${(props) => (props.is_active === 'active' ? 'white' : 'black')};
-`;
-
 function NavBar() {
-  const { route } = useRouter();
+  const router = useRouter();
   return (
-    <Nav>
-      <StyledLink href='/' is_active={route === '/' ? 'active' : ''}>
-        Home
-      </StyledLink>
-      <StyledLink href='/about' is_active={route === '/about' ? 'active' : ''}>
-        About
-      </StyledLink>
-    </Nav>
+    <nav>
+      <img src='/vercel.svg' />
+      <div>
+        <Link href='/' legacyBehavior>
+          <a className={router.pathname === '/' ? 'active' : ''}>Home</a>
+        </Link>
+        <Link href='/about' legacyBehavior>
+          <a className={router.pathname === '/about' ? 'active' : ''}>About</a>
+        </Link>
+      </div>
+      <style jsx>{`
+        nav {
+          display: flex;
+          gap: 10px;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 20px;
+          padding-bottom: 10px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        }
+        img {
+          max-width: 100px;
+          margin-bottom: 5px;
+        }
+        nav a {
+          font-weight: 600;
+          font-size: 18px;
+          text-decoration: none;
+        }
+        .active {
+          color: tomato;
+        }
+        nav div {
+          display: flex;
+          gap: 10px;
+        }
+      `}</style>
+    </nav>
   );
 }
 
 export default NavBar;
+
+//
